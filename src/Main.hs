@@ -3,6 +3,9 @@ module Main where
 import System.IO
 import Data.List
 import Data.Char
+import Data.Maybe
+import Control.Monad
+import System.Random
 
 import Game
 import Minimax
@@ -29,21 +32,22 @@ ded = [[Empty]]
 
 main :: IO ()
 main = do
-    gameloop (transpose initboard) B >>= printBoard
+    g <- getStdGen
+    gameloop g (transpose initboard) B >>= printBoard
 
-gameloop :: Board -> Turn -> IO Board
-gameloop b B = do
+gameloop :: StdGen -> Board -> Turn -> IO Board
+gameloop g b B = do
     printBoard b
     putStrLn "black turn"
     move <- getLine
     let newboard = makeMove b B (parseInput move)
-    if newboard == b then
-        gameloop newboard B
-    else gameloop newboard W
-gameloop b W = do
+    if isJust (checkWin newboard) then
+        return newboard
+    else gameloop g newboard W
+gameloop g b W = do
     printBoard b
     putStrLn "white turn"
-    let newboard = snd (minimax 4 W b)
-    if newboard == b then
-        gameloop ded W
-    else gameloop newboard B
+    let newboard = snd (mm g 4 W b)
+    if isJust (checkWin newboard) then
+        return newboard
+    else gameloop g newboard B

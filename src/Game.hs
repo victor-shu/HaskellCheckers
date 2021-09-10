@@ -155,4 +155,3 @@ makeMove b t m
     | isMove b m = replace2d (start m) (replace2d (end m) b (promotion (getPiece b (start m)) (end m))) Empty
     | isCapture b m = replace2d (start m) (replace2d (end m) (replace2d (midpos (start m) (end m)) b Empty) (promotion (getPiece b (start m)) (end m))) Empty
     | otherwise = b
-
