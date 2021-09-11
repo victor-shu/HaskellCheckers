@@ -19,17 +19,6 @@ initboard = [[Empty, Piece Norm B, Empty, Piece Norm B, Empty, Piece Norm B, Emp
             [Empty, Piece Norm W, Empty, Piece Norm W, Empty, Piece Norm W, Empty, Piece Norm W],
             [Piece Norm W, Empty, Piece Norm W, Empty, Piece Norm W, Empty, Piece Norm W, Empty]]
 
-testboard = [[Empty, Empty, Piece Norm B, Empty, Empty, Empty, Empty, Empty],
-            [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-            [Empty, Empty, Empty, Empty, Piece Norm W, Empty, Empty, Empty],
-            [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-            [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-            [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-            [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty],
-            [Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty]]
-
-ded = [[Empty]]
-
 main :: IO ()
 main = do
     g <- getStdGen
